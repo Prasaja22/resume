@@ -28,22 +28,22 @@ const cardItems = [
     gambar: design,
     judul: "Design",
     deskripsi:
-      "Creating Design and prototype in order to conver the design to programming language",
+      "Creating a design and prototype in order to convert the design to a programming language.",
     tools: ["Canva", "Figma"],
   },
   {
     gambar: code,
     judul: "Code",
     deskripsi:
-      "Creating Frontend or Fullstack App I recenly using react for frontend and laravel for fullstack",
-    tools: ["React.Js", "Laravel", "Tailwind Css"],
+      "Creating a frontend or full-stack app, I recently used React for the frontend and Laravel for the full stack.",
+    tools: ["React.Js", "Laravel", "Tailwind CSS", "GitHub"],
   },
   {
     gambar: consulting,
-    judul: "System Design",
+    judul: "System Design & Testing",
     deskripsi:
-      "Creating design system for an app to make sure everything is working",
-    tools: ["UML", "App Diagram"],
+      "Creating a design system for an app to ensure everything is working.",
+    tools: ["UML", "App Diagram", "Cypress"],
   },
 ];
 
