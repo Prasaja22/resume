@@ -2,6 +2,8 @@
 
 import { BsFillMoonStarsFill } from "react-icons/bs";
 
+import { BsFillSunFill } from "react-icons/bs";
+
 import { BsFillArrowDownSquareFill } from "react-icons/bs";
 
 import { AiFillGithub, AiFillLinkedin, AiFillInstagram } from "react-icons/ai";
@@ -24,38 +26,30 @@ const portofolioImages = [web1, web2, web3];
 const cardItems = [
   {
     gambar: design,
-    judul: "Design Bagus",
-    deskripsi: "Creating Elegant Design suited for needs design theory",
-    tools: ["canva", "figma"],
+    judul: "Design",
+    deskripsi:
+      "Creating Design and prototype in order to conver the design to programming language",
+    tools: ["Canva", "Figma"],
   },
   {
     gambar: code,
-    judul: "Code Bagus",
-    deskripsi: "Creating Elegant Code suited for needs code theory",
-    tools: ["react", "laravel"],
+    judul: "Code",
+    deskripsi:
+      "Creating Frontend or Fullstack App I recenly using react for frontend and laravel for fullstack",
+    tools: ["React.Js", "Laravel", "Tailwind Css"],
   },
   {
     gambar: consulting,
-    judul: "Consulting Bagus",
-    deskripsi: "Creating Consulting Design suited for needs design theory",
-    tools: ["consulting", "apacoba"],
+    judul: "System Design",
+    deskripsi:
+      "Creating design system for an app to make sure everything is working",
+    tools: ["UML", "App Diagram"],
   },
 ];
 
 export default function Home() {
   const [dark, setDark] = useState(false);
   const [toggle, setToggle] = useState(false);
-
-  useEffect(() => {
-    const savedDarkMode = localStorage.getItem("darkMode");
-    if (savedDarkMode) {
-      setDark(savedDarkMode === "true"); // Konversi ke boolean
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("darkMode", dark.toString());
-  }, [dark]);
 
   return (
     <main
@@ -74,12 +68,21 @@ export default function Home() {
           </h1>
           <ul className="flex items-center">
             <li>
-              <BsFillMoonStarsFill
-                className={`cursor-pointer text-2xl ${
-                  dark ? "dark:text-gray-200" : ""
-                }`}
-                onClick={(d) => setDark((d) => !dark)}
-              />
+              {dark ? (
+                <BsFillSunFill
+                  className={`cursor-pointer text-2xl ${
+                    dark ? "dark:text-gray-200" : ""
+                  }`}
+                  onClick={(d) => setDark((d) => !dark)}
+                />
+              ) : (
+                <BsFillMoonStarsFill
+                  className={`cursor-pointer text-2xl ${
+                    dark ? "dark:text-gray-200" : ""
+                  }`}
+                  onClick={(d) => setDark((d) => !dark)}
+                />
+              )}
             </li>
             <li>
               <a
@@ -178,9 +181,13 @@ export default function Home() {
               dark ? "dark:text-gray-200" : ""
             }`}
           >
-            I gave services such as fullstack using{" "}
-            <span className="text-teal-500">laravel</span> and frontend using
-            <span className="text-teal-500"> react</span>
+            During my studies at{" "}
+            <span className="text-teal-500">Malang State Polytechnic</span>, I
+            had the opportunity to be involved in various projects and build a
+            number of portfolios that reflect my understanding and skills in the
+            world of web and application development. As a Business Information
+            Systems student, I focused on software development and information
+            technology.
           </p>
         </div>
         <div className="flex flex-col gap-10 py-10 lg:flex-row lg:flex-wrap">
@@ -227,7 +234,7 @@ function Card({ gambar, judul, deskripsi, tools, dark }) {
         {judul}
       </h3>
       <p className={`py-2 ${dark ? "dark:text-gray-900" : ""}`}>{deskripsi}</p>
-      <h4 className="py-4 text-teal-500">Design Tools</h4>
+      <h4 className="py-4 text-teal-500">Tools</h4>
       {tools.map((newTools, i) => (
         <p key={i} className="text-gray-800 py-1">
           {newTools}
