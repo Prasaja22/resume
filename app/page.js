@@ -1,9 +1,10 @@
+"use client";
+
 import { BsBrowserChrome } from "react-icons/bs";
-import {
-  AiFillTwitterCircle,
-  AiFillLinkedin,
-  AiFillInstagram,
-} from "react-icons/ai";
+
+import { BsFillArrowDownSquareFill } from "react-icons/bs";
+
+import { AiFillGithub, AiFillLinkedin, AiFillInstagram } from "react-icons/ai";
 
 import Image from "next/image";
 
@@ -16,6 +17,7 @@ import consulting from "../public/consulting.png";
 import web1 from "../public/web1.png";
 import web2 from "../public/web2.png";
 import web3 from "../public/web4.png";
+import { useState } from "react";
 
 const portofolioImages = [web1, web2, web3];
 
@@ -41,8 +43,10 @@ const cardItems = [
 ];
 
 export default function Home() {
+  const [toggle, setToggle] = useState(false);
+
   return (
-    <main className="bg-white px-10 md:px-20 lg:px-40">
+    <main className="bg-white px-10 md:px-20 lg:px-40 ">
       <section className=" min-h-screen text-slate-900">
         <nav className="py-10 mb-12 flex justify-between">
           <h1 className="text-xl font-burtons">Portofolio Website</h1>
@@ -64,19 +68,43 @@ export default function Home() {
           <h2 className="text-5xl py-2 text-teal-600 font-medium md:text-6xl">
             Ghozy Nouval Satya Prasaja
           </h2>
-          <h3 className="text-2xl py-2 md:text-3xl">Fullstack Developer</h3>
-          <p className="text-md py-5 leading-8 text-gray-800 md:text-lg max-w-xl mx-auto">
-            I recenly study in politeknik negeri malang and majoring in System
-            Informatic Bussiness
+          <h3 className="text-2xl py-2 md:text-3xl">Junior Web Developer</h3>
+          <div className="md:px-20 lg:px-40">
+            <div
+              className="bg-gray-100 cursor-pointer rounded-md text-slate-600 flex justify-between px-5 py-2 md:text-lg items-center"
+              onClick={(t) => setToggle((t) => !toggle)}
+            >
+              <h3 className="font-semibold">About Me</h3>
+              <BsFillArrowDownSquareFill />
+            </div>
+          </div>
+
+          <p
+            className={`text-md py-5 leading-8 text-gray-800 md:text-lg max-w-xl mx-auto flex justify-between ${
+              toggle ? "" : "hidden"
+            }`}
+          >
+            7th semester student majoring in business information systems from
+            the State Polytechnic of Malang Have an interest in the world of
+            website development and Android-based application development. Able
+            to create web applications using the Laravel framework and Android
+            applications using the Flutter framework. Looking for internship
+            opportunities in the field of full stack developer, back-end,
+            front-end, or android developer to improve skills.
           </p>
         </div>
         <div className="text-5xl flex justify-center gap-16 py-3 text-gray-600">
-          <AiFillTwitterCircle />
+          <AiFillGithub />
           <AiFillLinkedin />
           <AiFillInstagram />
         </div>
-        <div className="relative mx-auto bg-gradient-to-b mb-7 from-teal-500 rounded-full w-80 h-80 mt-20 overflow-hidden md:h-96 md:w-96">
-          <Image src={pp} alt="pp" priority className="object-fill mt-5" />
+        <div className="relative mx-auto max-w-screen-xl bg-gradient-to-b mb-7 from-teal-500 rounded-full w-72 h-72 mt-20 overflow-hidden md:h-96 md:w-96">
+          <Image
+            src={pp}
+            alt="pp"
+            priority
+            className="object-cover w-full h-full mt-5"
+          />
         </div>
       </section>
       <section className="text-slate-900">
