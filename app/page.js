@@ -1,6 +1,6 @@
 "use client";
 
-import { BsBrowserChrome } from "react-icons/bs";
+import { BsFillMoonStarsFill } from "react-icons/bs";
 
 import { BsFillArrowDownSquareFill } from "react-icons/bs";
 
@@ -17,7 +17,7 @@ import consulting from "../public/consulting.png";
 import web1 from "../public/web1.png";
 import web2 from "../public/web2.png";
 import web3 from "../public/web4.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const portofolioImages = [web1, web2, web3];
 
@@ -43,16 +43,43 @@ const cardItems = [
 ];
 
 export default function Home() {
+  const [dark, setDark] = useState(false);
   const [toggle, setToggle] = useState(false);
 
+  useEffect(() => {
+    const savedDarkMode = localStorage.getItem("darkMode");
+    if (savedDarkMode) {
+      setDark(savedDarkMode === "true"); // Konversi ke boolean
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", dark.toString());
+  }, [dark]);
+
   return (
-    <main className="bg-white px-10 md:px-20 lg:px-40 ">
+    <main
+      className={`bg-white px-10 md:px-20 lg:px-40 ${
+        dark ? "dark:bg-gray-900" : ""
+      }`}
+    >
       <section className=" min-h-screen text-slate-900">
         <nav className="py-10 mb-12 flex justify-between">
-          <h1 className="text-xl font-burtons">Portofolio Website</h1>
+          <h1
+            className={`text-xl font-burtonstext-xl font-burtons ${
+              dark ? "dark:text-gray-200" : ""
+            }`}
+          >
+            Portofolio Website
+          </h1>
           <ul className="flex items-center">
             <li>
-              <BsBrowserChrome className="cursor-pointer text-2xl" />
+              <BsFillMoonStarsFill
+                className={`cursor-pointer text-2xl ${
+                  dark ? "dark:text-gray-200" : ""
+                }`}
+                onClick={(d) => setDark((d) => !dark)}
+              />
             </li>
             <li>
               <a
@@ -68,7 +95,13 @@ export default function Home() {
           <h2 className="text-5xl py-2 text-teal-600 font-medium md:text-6xl">
             Ghozy Nouval Satya Prasaja
           </h2>
-          <h3 className="text-2xl py-2 md:text-3xl">Junior Web Developer</h3>
+          <h3
+            className={`text-2xl py-2 md:text-3xl ${
+              dark ? "dark:text-gray-200" : ""
+            }`}
+          >
+            Junior Web Developer
+          </h3>
           <div className="md:px-20 lg:px-40">
             <div
               className="bg-gray-100 cursor-pointer rounded-md text-slate-600 flex justify-between px-5 py-2 md:text-lg items-center"
@@ -82,7 +115,7 @@ export default function Home() {
           <p
             className={`text-md py-5 leading-8 text-gray-800 md:text-lg max-w-xl mx-auto flex justify-between ${
               toggle ? "" : "hidden"
-            }`}
+            } ${dark ? "dark:text-gray-200" : ""} `}
           >
             7th semester student majoring in business information systems from
             the State Polytechnic of Malang Have an interest in the world of
@@ -93,7 +126,7 @@ export default function Home() {
             front-end, or android developer to improve skills.
           </p>
         </div>
-        <div className="text-5xl flex justify-center gap-16 py-3 text-gray-600">
+        <div className="text-3xl flex justify-center gap-16 py-3 text-gray-600 md:text-5xl">
           <AiFillGithub />
           <AiFillLinkedin />
           <AiFillInstagram />
@@ -109,8 +142,14 @@ export default function Home() {
       </section>
       <section className="text-slate-900">
         <div>
-          <h3 className="text-3xl py-1">Services Offer</h3>
-          <p className="text-md py-2 leading-8 text-gray-600">
+          <h3 className={`text-3xl py-1 ${dark ? "dark:text-gray-200" : ""}`}>
+            Services Offer
+          </h3>
+          <p
+            className={`text-md py-2 leading-8 text-gray-600 ${
+              dark ? "dark:text-gray-200" : ""
+            }`}
+          >
             I gave services such as fullstack using{" "}
             <span className="text-teal-500">laravel</span> and frontend using
             <span className="text-teal-500"> react</span>
@@ -124,14 +163,21 @@ export default function Home() {
               judul={newCard.judul}
               deskripsi={newCard.deskripsi}
               tools={newCard.tools}
+              dark={dark}
             />
           ))}
         </div>
       </section>
       <section className="text-slate-900">
         <div>
-          <h3 className="text-3xl py-1">Portofolio</h3>
-          <p className="text-md py-2 leading-8 text-gray-600">
+          <h3 className={`text-3xl py-1 ${dark ? "dark:text-gray-200" : ""}`}>
+            Portofolio
+          </h3>
+          <p
+            className={`text-md py-2 leading-8 text-gray-600 ${
+              dark ? "dark:text-gray-200" : ""
+            }`}
+          >
             I gave services such as fullstack using{" "}
             <span className="text-teal-500">laravel</span> and frontend using
             <span className="text-teal-500"> react</span>
@@ -159,9 +205,13 @@ function PortofolioImagesCard({ gambar }) {
   );
 }
 
-function Card({ gambar, judul, deskripsi, tools }) {
+function Card({ gambar, judul, deskripsi, tools, dark }) {
   return (
-    <div className="text-center shadow-lg p-10 rounded-xl my-10">
+    <div
+      className={`text-center shadow-lg p-10 rounded-xl my-10 ${
+        dark ? "dark:text-gray-200 dark:bg-gray-300" : ""
+      }`}
+    >
       <Image
         src={gambar}
         width={100}
@@ -169,8 +219,14 @@ function Card({ gambar, judul, deskripsi, tools }) {
         alt="card"
         className="mx-auto"
       />
-      <h3 className="text-lg font-medium pt-8 pb-2">{judul}</h3>
-      <p className="py-2">{deskripsi}</p>
+      <h3
+        className={`text-lg font-medium pt-8 pb-2  ${
+          dark ? "dark:text-gray-900" : ""
+        }`}
+      >
+        {judul}
+      </h3>
+      <p className={`py-2 ${dark ? "dark:text-gray-900" : ""}`}>{deskripsi}</p>
       <h4 className="py-4 text-teal-500">Design Tools</h4>
       {tools.map((newTools, i) => (
         <p key={i} className="text-gray-800 py-1">
