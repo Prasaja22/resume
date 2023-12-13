@@ -19,9 +19,15 @@ import consulting from "../public/consulting.png";
 import web1 from "../public/web1.png";
 import web2 from "../public/web2.png";
 import web3 from "../public/web4.png";
+
+import cer1 from "../public/img_1dcd61ef746006a9a032b4363a6c930c.gif";
+import cer2 from "../public/problem_solving_basic certificate_page-0001.jpg";
+
 import { useEffect, useState } from "react";
 
 const portofolioImages = [web1, web2, web3];
+
+const certif = [cer1, cer2];
 
 const cardItems = [
   {
@@ -70,7 +76,7 @@ export default function Home() {
             <li>
               {dark ? (
                 <BsFillSunFill
-                  className={`cursor-pointer text-2xl ${
+                  className={`cursor-pointer text-2xl animate-pulse ${
                     dark ? "dark:text-gray-200" : ""
                   }`}
                   onClick={(d) => setDark((d) => !dark)}
@@ -146,16 +152,32 @@ export default function Home() {
       <section className="text-slate-900">
         <div>
           <h3 className={`text-3xl py-1 ${dark ? "dark:text-gray-200" : ""}`}>
-            Services Offer
+            Tech Stack
           </h3>
           <p
             className={`text-md py-2 leading-8 text-gray-600 ${
               dark ? "dark:text-gray-200" : ""
             }`}
           >
-            I gave services such as fullstack using{" "}
-            <span className="text-teal-500">laravel</span> and frontend using
-            <span className="text-teal-500"> react</span>
+            In completing various software development projects, I have gained
+            extensive experience in using a variety of technologies that
+            comprise the <span className="text-teal-500">tech stack</span> I
+            employ. For frontend development, I am skilled in using{" "}
+            <span className="text-teal-500"> React.js</span>, a JavaScript
+            framework that enables the creation of responsive and dynamic user
+            interfaces. Additionally, I have expertise in designing layouts
+            using CSS and enhancing functionality with JavaScript.
+          </p>
+          <p
+            className={`text-md py-2 leading-8 text-gray-600 ${
+              dark ? "dark:text-gray-200" : ""
+            }`}
+          >
+            On the backend side, I have successfully implemented solutions using
+            <span className="text-teal-500"> Laravel</span>, a powerful and
+            efficient PHP framework. Laravel helps me manage business logic,
+            database access, and provides the necessary APIs to support web and
+            mobile applications.
           </p>
         </div>
         <div className="lg:flex gap-10">
@@ -192,7 +214,29 @@ export default function Home() {
         </div>
         <div className="flex flex-col gap-10 py-10 lg:flex-row lg:flex-wrap">
           {portofolioImages.map((newPorto, i) => (
-            <PortofolioImagesCard key={i} gambar={newPorto} />
+            <GalerySections key={i} gambar={newPorto} />
+          ))}
+        </div>
+      </section>
+      <section className="text-slate-900">
+        <div>
+          <h3 className={`text-3xl py-1 ${dark ? "dark:text-gray-200" : ""}`}>
+            Certificates
+          </h3>
+          <p
+            className={`text-md py-2 leading-8 text-gray-600 ${
+              dark ? "dark:text-gray-200" : ""
+            }`}
+          >
+            During my college years, I earned various certificates that reflect
+            my dedication and achievements in various fields. These certificates
+            include participation in boot camp training that enriched my
+            understanding of certain aspects of the academic world.
+          </p>
+        </div>
+        <div className="flex flex-col gap-10 py-10 lg:flex-row lg:flex-wrap">
+          {certif.map((cer, i) => (
+            <GalerySections key={i} gambar={cer} />
           ))}
         </div>
       </section>
@@ -200,7 +244,7 @@ export default function Home() {
   );
 }
 
-function PortofolioImagesCard({ gambar }) {
+function GalerySections({ gambar }) {
   return (
     <div className="basis-1/3 flex-1">
       <Image
