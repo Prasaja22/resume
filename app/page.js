@@ -54,8 +54,20 @@ const cardItems = [
 ];
 
 export default function Home() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(localStorage.getItem("darkMode"));
   const [toggle, setToggle] = useState(false);
+
+  useEffect(() => {
+    const savedDarkMode = localStorage.getItem("darkMode");
+    if (savedDarkMode) {
+      setDark(savedDarkMode === "true");
+    }
+  }, []); // Perhatikan penggunaan array dependencies agar useEffect hanya dijalankan sekali saat komponen dimuat
+
+  // Menambahkan useEffect untuk menyimpan perubahan dark mode ke local storage
+  useEffect(() => {
+    localStorage.setItem("darkMode", dark.toString());
+  }, [dark]);
 
   return (
     <main
@@ -136,9 +148,15 @@ export default function Home() {
           </p>
         </div>
         <div className="text-3xl flex justify-center gap-16 py-3 text-gray-600 md:text-5xl">
-          <AiFillGithub />
-          <AiFillLinkedin />
-          <AiFillInstagram />
+          <a href="https://github.com/Prasaja22" target="_blank">
+            <AiFillGithub />
+          </a>
+          <a href="https://www.linkedin.com/in/ghozyprasaja/" target="_blank">
+            <AiFillLinkedin />
+          </a>
+          <a href="https://www.instagram.com/nghozy11/" target="_blank">
+            <AiFillInstagram />
+          </a>
         </div>
         <div className="relative mx-auto max-w-screen-xl bg-gradient-to-b mb-7 from-teal-500 rounded-full w-72 h-72 mt-20 overflow-hidden md:h-96 md:w-96">
           <Image
