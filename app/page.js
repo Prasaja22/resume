@@ -54,7 +54,9 @@ const cardItems = [
 ];
 
 export default function Home() {
-  const [dark, setDark] = useState(localStorage.getItem("darkMode"));
+  const [dark, setDark] = useState(
+    localStorage.getItem("darkMode") === "true" // Konversi ke boolean
+  );
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
