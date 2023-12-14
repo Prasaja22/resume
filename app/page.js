@@ -55,15 +55,15 @@ const cardItems = [
 
 export default function Home() {
   const [dark, setDark] = useState(
-    localStorage.getItem("darkMode") === "true" // Konversi ke boolean
+    false // Konversi ke boolean
   );
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
-    const savedDarkMode = localStorage.getItem("darkMode");
-    if (savedDarkMode) {
-      setDark(savedDarkMode === "true");
-    }
+    localStorage.setItem("darkMode", "false");
+    const item = localStorage.getItem("darkMode");
+
+    setDark(item);
   }, []); // Perhatikan penggunaan array dependencies agar useEffect hanya dijalankan sekali saat komponen dimuat
 
   // Menambahkan useEffect untuk menyimpan perubahan dark mode ke local storage
