@@ -39,7 +39,7 @@ const cardItems = [
   },
   {
     gambar: code,
-    judul: "Code",
+    judul: "Coding",
     deskripsi:
       "Creating a frontend or full-stack app, I recently used React for the frontend and Laravel for the full stack.",
     tools: ["React.Js", "Laravel", "Tailwind CSS", "GitHub"],
